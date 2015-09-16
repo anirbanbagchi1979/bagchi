@@ -1,0 +1,12 @@
+{
+  "name" : "sendemail",
+  "version" : "1.0.0",
+  "description" : "Send Email API",
+  "main" : "sendemail.js",
+  "oracleMobile" : {
+    "dependencies" : {
+      "apis" : { },
+      "connectors" : { }
+    }
+  }
+}
