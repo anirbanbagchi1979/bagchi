@@ -1,0 +1,36 @@
+CREATE SEQUENCE AssetManagerIdSequence OPTIONS (
+  sequence_kind="bit_reversed_positive"
+);
+
+CREATE TABLE ASSET_MANAGERS (
+  ManagerID INT64 DEFAULT (GET_NEXT_SEQUENCE_VALUE(SEQUENCE AssetManagerIdSequence)),
+  Name STRING(MAX)) PRIMARY KEY (ManagerID);
+
+
+CREATE SEQUENCE CompanyIdSequence OPTIONS (
+  sequence_kind="bit_reversed_positive"
+);
+
+CREATE TABLE COMPANIES (
+  CompanyID INT64 DEFAULT (GET_NEXT_SEQUENCE_VALUE(SEQUENCE CompanyIdSequence)),
+  CUSIP STRING(20),
+  COMPANY_NAME STRING(MAX)
+  ) PRIMARY KEY (CompanyID);
+
+
+CREATE SEQUENCE TxnIdSequence OPTIONS (
+  sequence_kind="bit_reversed_positive"
+);
+CREATE TABLE TRANSACTIONS (
+  TxnID INT64 DEFAULT (GET_NEXT_SEQUENCE_VALUE(SEQUENCE TxnIdSequence)),
+  CompanyID INT64 NOT NULL,
+  ManagerID INT64 NOT NULL,
+  REPORT_DATE STRING(10),
+  Value NUMERIC,
+  Shares NUMERIC,
+  SourceFilingId STRING(MAX),
+
+
+ CONSTRAINT FK_Company FOREIGN KEY (CompanyID) REFERENCES COMPANIES (CompanyID),
+ CONSTRAINT FK_AssetMgr FOREIGN KEY (ManagerID) REFERENCES ASSET_MANAGERS (ManagerID)
+  ) PRIMARY KEY (TxnID);

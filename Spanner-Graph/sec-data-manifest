@@ -1,0 +1,16 @@
+{
+  "tables": [
+    {
+      "table_name": "ASSET_MANAGERS",
+      "file_patterns": [
+        "gs://sec-data-demo/Companies.csv"
+      ]
+    },
+    {
+      "table_name": "COMPANIES",
+      "file_patterns": [
+        "gs://sec-data-demo/Managers.csv"
+      ]
+    }
+  ]
+}
